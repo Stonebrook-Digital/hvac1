@@ -93,20 +93,10 @@ a {
 .photo-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 55s linear infinite;
+  animation: marquee 140s linear infinite;
 }
 
 .photo-marquee:hover {
-  animation-play-state: paused;
-}
-
-.photo-marquee-reverse {
-  display: flex;
-  width: max-content;
-  animation: marquee 60s linear infinite reverse;
-}
-
-.photo-marquee-reverse:hover {
   animation-play-state: paused;
 }
 

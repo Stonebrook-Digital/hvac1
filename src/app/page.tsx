@@ -1,76 +1,98 @@
 import Image from "next/image";
+import {
+  IconAirConditioning,
+  IconAirQuality,
+  IconHeating,
+  IconMaintenance,
+} from "@/components/ServiceIcons";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { STOCK_PHOTOS, unsplashUrl } from "@/lib/unsplash";
+import {
+  CONQUER_LOGO_SRC,
+  LOCAL_PHOTOS,
+  MARQUEE_LOCAL_A,
+} from "@/lib/local-media";
 
 const services = [
   {
     title: "Air Conditioning",
     copy: "Diagnostics, repairs, and high-efficiency replacements that keep every room summer-steady.",
-    photoIndex: 0,
   },
   {
     title: "Heating Systems",
     copy: "Furnaces and heat pumps tuned for even heat, quiet cycles, and reliable winter performance.",
-    photoIndex: 10,
   },
   {
     title: "Indoor Air Quality",
     copy: "Filtration, humidity, and fresh-air strategy so your home breathes as good as it feels.",
-    photoIndex: 14,
   },
   {
     title: "Maintenance Plans",
     copy: "Seasonal tune-ups that extend equipment life and keep surprise breakdowns off the table.",
-    photoIndex: 6,
   },
 ];
+
+const serviceIcons = [
+  IconAirConditioning,
+  IconHeating,
+  IconAirQuality,
+  IconMaintenance,
+] as const;
 
 const steps = [
   {
     number: "01",
     title: "Listen",
     detail: "Comfort goals, trouble spots, and how you actually live in the space.",
-    photoIndex: 15,
   },
   {
     number: "02",
     title: "Diagnose",
     detail: "Plain-language findings with photos when it helps you decide.",
-    photoIndex: 1,
   },
   {
     number: "03",
     title: "Deliver",
     detail: "Repairs and installs done to code, tested, and walk-through complete.",
-    photoIndex: 0,
   },
   {
     number: "04",
     title: "Support",
     detail: "Follow-up, maintenance, and answers when seasons change.",
-    photoIndex: 3,
   },
 ];
 
-const marqueeA = [...STOCK_PHOTOS, ...STOCK_PHOTOS];
-const marqueeB = [...STOCK_PHOTOS].reverse().concat(STOCK_PHOTOS);
-
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4 py-8 pb-12 sm:gap-16 sm:px-8 sm:py-12 sm:pb-16">
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4 py-6 pb-12 sm:gap-16 sm:px-8 sm:py-8 sm:pb-16">
       <section className="section-shell grain relative overflow-hidden p-6 sm:p-10 lg:p-12">
         <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center">
-          <div className="relative z-10 space-y-7">
-            <p className="inline-flex rounded-full border border-brand/25 bg-brand/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] text-brand uppercase">
-              Conquer Home Services
-            </p>
-            <h1 className="max-w-[15ch] text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-[4rem]">
-              Comfort,
-              <br />
-              <span className="bg-gradient-to-r from-brand to-brand-strong bg-clip-text text-transparent">
-                engineered for your home.
-              </span>
-            </h1>
+          <div className="relative z-10 flex flex-col gap-8">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+              <div className="mx-auto shrink-0 rounded-2xl bg-black px-8 py-7 shadow-xl ring-1 ring-white/10 sm:mx-0 sm:px-9 sm:py-8">
+                <Image
+                  src={CONQUER_LOGO_SRC}
+                  alt="Conquer Home Services HVAC"
+                  width={200}
+                  height={200}
+                  className="mx-auto h-24 w-24 object-contain sm:h-[6.75rem] sm:w-[6.75rem]"
+                  priority
+                />
+              </div>
+              <div className="min-w-0 flex-1 space-y-7">
+                <p className="inline-flex items-center gap-2 rounded-full border border-brand/25 bg-white/80 px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] text-brand uppercase shadow-sm backdrop-blur-sm">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                  Conquer Home Services
+                </p>
+                <h1 className="max-w-[16ch] text-4xl font-semibold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-[4rem]">
+                  Comfort,
+                  <br />
+                  <span className="text-brand">
+                    engineered for your{" "}
+                    <span className="text-accent">home.</span>
+                  </span>
+                </h1>
+              </div>
+            </div>
             <p className="max-w-lg text-base leading-relaxed text-text-muted sm:text-lg">
               Real homes, real technicians, real results. Over 13 years we have
               treated HVAC as both craft and clarity—so you always know what is
@@ -79,13 +101,13 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-brand/25 transition hover:bg-brand-strong"
+                className="rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-brand/30 transition hover:bg-brand-strong"
               >
                 Book a visit
               </a>
               <a
                 href="#services"
-                className="rounded-full border-2 border-line bg-surface px-7 py-3.5 text-sm font-semibold text-foreground transition hover:border-brand/50 hover:text-brand"
+                className="rounded-full border-2 border-brand/20 bg-white/90 px-7 py-3.5 text-sm font-semibold text-foreground transition hover:border-accent/35 hover:text-accent"
               >
                 Browse services
               </a>
@@ -95,37 +117,37 @@ export default function Home() {
           <div className="relative mx-auto grid w-full max-w-md grid-cols-12 gap-3 sm:max-w-none lg:mx-0 lg:max-w-none">
             <div className="animate-float relative col-span-7 col-start-1 row-start-1 aspect-[4/5] overflow-hidden rounded-3xl border border-line shadow-xl">
               <Image
-                src={unsplashUrl(STOCK_PHOTOS[0].id)}
-                alt={STOCK_PHOTOS[0].alt}
+                src={LOCAL_PHOTOS[0].src}
+                alt={LOCAL_PHOTOS[0].alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 60vw, 35vw"
                 priority
               />
             </div>
-            <div className="animate-float-delayed relative z-[1] col-span-6 col-start-7 row-start-1 mt-12 aspect-square overflow-hidden rounded-2xl border border-line shadow-lg sm:mt-16">
+            <div className="animate-float-delayed relative z-[1] col-span-6 col-start-7 row-start-1 mt-12 aspect-square overflow-hidden rounded-3xl border border-line shadow-lg sm:mt-16">
               <Image
-                src={unsplashUrl(STOCK_PHOTOS[3].id)}
-                alt={STOCK_PHOTOS[3].alt}
+                src={LOCAL_PHOTOS[2].src}
+                alt={LOCAL_PHOTOS[2].alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 45vw, 28vw"
                 priority
               />
             </div>
-            <div className="relative z-[2] col-span-5 col-start-2 -mt-8 aspect-[5/4] overflow-hidden rounded-2xl border-2 border-white shadow-xl sm:-mt-10">
+            <div className="relative z-[2] col-span-5 col-start-2 -mt-8 aspect-[5/4] overflow-hidden rounded-3xl border-2 border-white shadow-xl sm:-mt-10">
               <Image
-                src={unsplashUrl(STOCK_PHOTOS[9].id)}
-                alt={STOCK_PHOTOS[9].alt}
+                src={LOCAL_PHOTOS[1].src}
+                alt={LOCAL_PHOTOS[1].alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 40vw, 22vw"
               />
             </div>
-            <div className="relative col-span-6 col-start-7 -mt-4 aspect-video overflow-hidden rounded-2xl border border-line shadow-md sm:-mt-6">
+            <div className="relative col-span-6 col-start-7 -mt-4 aspect-video overflow-hidden rounded-3xl border border-line shadow-md sm:-mt-6">
               <Image
-                src={unsplashUrl(STOCK_PHOTOS[1].id)}
-                alt={STOCK_PHOTOS[1].alt}
+                src={LOCAL_PHOTOS[3].src}
+                alt={LOCAL_PHOTOS[3].alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 50vw, 30vw"
@@ -141,13 +163,13 @@ export default function Home() {
         </p>
         <div className="relative border-y border-line bg-surface/95 py-5 shadow-inner">
           <div className="photo-marquee gap-4 pr-4">
-            {marqueeA.map((item, i) => (
+            {MARQUEE_LOCAL_A.map((item, i) => (
               <div
-                key={`a-${item.id}-${i}`}
-                className="image-reveal relative h-40 w-64 shrink-0 overflow-hidden rounded-2xl border border-line shadow-sm sm:h-44 sm:w-72"
+                key={`a-${item.src}-${i}`}
+                className="image-reveal relative h-40 w-64 shrink-0 overflow-hidden rounded-3xl border border-line shadow-sm sm:h-44 sm:w-72"
               >
                 <Image
-                  src={unsplashUrl(item.id, 800)}
+                  src={item.src}
                   alt={item.alt}
                   fill
                   className="object-cover"
@@ -156,64 +178,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="-mx-4 overflow-hidden sm:-mx-8">
-        <p className="mb-4 px-4 text-center text-[11px] font-bold tracking-[0.25em] text-text-muted uppercase sm:px-8">
-          Homes & hardware
-        </p>
-        <div className="relative border-b border-line bg-surface-soft/80 py-5">
-          <div className="photo-marquee-reverse gap-4 pr-4">
-            {marqueeB.map((item, i) => (
-              <div
-                key={`b-${item.id}-${i}`}
-                className="image-reveal relative h-36 w-56 shrink-0 overflow-hidden rounded-xl border border-line shadow-sm sm:h-40 sm:w-64"
-              >
-                <Image
-                  src={unsplashUrl(item.id, 700)}
-                  alt={item.alt}
-                  fill
-                  className="object-cover"
-                  sizes="256px"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell overflow-hidden p-4 sm:p-6">
-        <div className="mb-4 flex flex-col gap-2 px-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Snapshot wall
-          </h2>
-          <p className="max-w-md text-sm text-text-muted">
-            A fuller picture of the spaces and systems we touch—swap any tile for
-            your own project photos when you are ready.
-          </p>
-        </div>
-        <div
-          className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 sm:gap-2 md:grid-cols-8"
-          aria-hidden
-        >
-          {Array.from({ length: 40 }).map((_, i) => {
-            const item = STOCK_PHOTOS[i % STOCK_PHOTOS.length];
-            return (
-              <div
-                key={`wall-${item.id}-${i}`}
-                className="image-reveal relative aspect-square overflow-hidden rounded-lg border border-line/80"
-              >
-                <Image
-                  src={unsplashUrl(item.id, 400)}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 25vw, 12vw"
-                />
-              </div>
-            );
-          })}
         </div>
       </section>
 
@@ -245,8 +209,8 @@ export default function Home() {
         </article>
         <div className="section-shell image-reveal relative min-h-[280px] overflow-hidden lg:min-h-0">
           <Image
-            src={unsplashUrl("photo-1600585154363-67eb9e2e2099", 1400)}
-            alt="Bright modern living room with large windows"
+            src={LOCAL_PHOTOS[0].src}
+            alt={LOCAL_PHOTOS[0].alt}
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 55vw"
@@ -274,23 +238,18 @@ export default function Home() {
           </p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => {
-            const shot = STOCK_PHOTOS[service.photoIndex % STOCK_PHOTOS.length];
+          {services.map((service, idx) => {
+            const Icon = serviceIcons[idx];
             return (
               <article
                 key={service.title}
-                className="section-shell image-reveal group flex flex-col overflow-hidden p-0 transition hover:shadow-lg hover:shadow-brand/8"
+                className="section-shell group flex flex-col overflow-hidden p-0 transition hover:shadow-lg hover:shadow-brand/10"
               >
-                <div className="relative aspect-[5/4] w-full overflow-hidden">
-                  <Image
-                    src={unsplashUrl(shot.id, 900)}
-                    alt={`${service.title}: ${shot.alt}`}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-strong/75 via-brand-strong/15 to-transparent" />
-                  <h3 className="absolute bottom-4 left-4 right-4 text-lg font-semibold text-white">
+                <div className="flex flex-col items-center border-b border-line bg-surface-soft/60 px-5 pb-8 pt-10 sm:px-6">
+                  <div className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border border-brand/20 bg-white text-brand shadow-sm transition group-hover:border-brand/35 group-hover:bg-brand/[0.06]">
+                    <Icon className="h-10 w-10" />
+                  </div>
+                  <h3 className="mt-5 text-center text-lg font-semibold tracking-tight text-foreground">
                     {service.title}
                   </h3>
                 </div>
@@ -303,78 +262,75 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell overflow-hidden p-4 sm:p-6">
-        <div className="mb-6 flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            The work, in color
-          </h2>
-          <p className="max-w-sm text-sm text-text-muted">
-            Crews, homes, and hardware—real context for what we do every day.
+      <section
+        id="work"
+        className="section-shell relative overflow-hidden border-brand/10 px-6 py-12 sm:px-10 sm:py-14 lg:px-14 lg:py-16"
+      >
+        <div
+          className="pointer-events-none absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-brand via-brand/35 to-accent"
+          aria-hidden
+        />
+        <div className="relative pl-5 sm:pl-8">
+          <p className="font-mono text-[11px] font-semibold tracking-[0.22em] text-brand">
+            OUTCOME
           </p>
-        </div>
-        <div className="grid auto-rows-[130px] grid-cols-6 gap-2 sm:auto-rows-[150px] sm:gap-3 md:auto-rows-[170px]">
-          <div className="image-reveal relative col-span-4 row-span-2 overflow-hidden rounded-2xl border border-line sm:col-span-3">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[11].id, 1200)}
-              alt={STOCK_PHOTOS[11].alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 66vw, 50vw"
-            />
+          <div
+            className="mt-6 max-w-4xl space-y-2 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.08] tracking-tight text-foreground"
+            style={{
+              fontFamily: "var(--font-dm-serif), ui-serif, Georgia, serif",
+            }}
+          >
+            <p>
+              <span className="text-brand">Measured</span> in steady temps.
+            </p>
+            <p className="text-foreground/75">
+              Remembered for{" "}
+              <span className="text-accent">quiet nights</span> and clear answers.
+            </p>
           </div>
-          <div className="image-reveal relative col-span-2 row-span-2 overflow-hidden rounded-2xl border border-line sm:col-span-3">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[6].id, 800)}
-              alt={STOCK_PHOTOS[6].alt}
-              fill
-              className="object-cover"
-              sizes="33vw"
-            />
+
+          <div
+            className="mt-8 h-px max-w-md bg-gradient-to-r from-brand/60 via-brand/25 to-accent/50"
+            aria-hidden
+          />
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
+            <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
+              <p className="text-sm leading-relaxed text-text-muted">
+                This is not a mood board—it is the standard we hold every visit
+                to: diagnose with evidence, explain without theater, and leave
+                systems tuned so your home feels boring in the best way.
+              </p>
+              <p className="text-sm leading-relaxed text-text-muted">
+                When you scroll the strip above, you are seeing the world we
+                work in. When you hire us, you get accountability, not collage.
+              </p>
+            </div>
+            <aside className="border-l border-line pl-6 lg:border-l-0 lg:border-t lg:pl-0 lg:pt-6">
+              <p className="font-mono text-[10px] font-semibold tracking-[0.18em] text-text-muted">
+                FIELD NOTE
+              </p>
+              <p
+                className="mt-3 text-lg leading-snug text-foreground"
+                style={{
+                  fontFamily: "var(--font-dm-serif), ui-serif, Georgia, serif",
+                }}
+              >
+                “If it only looks good in a photo and not on the thermostat, we
+                have not done our job.”
+              </p>
+            </aside>
           </div>
-          <div className="image-reveal relative col-span-2 overflow-hidden rounded-2xl border border-line">
+
+          <div className="image-reveal relative mt-12 h-44 w-full overflow-hidden rounded-2xl border border-line sm:h-52 lg:h-56">
             <Image
-              src={unsplashUrl(STOCK_PHOTOS[2].id, 600)}
-              alt={STOCK_PHOTOS[2].alt}
+              src={LOCAL_PHOTOS[4].src}
+              alt={LOCAL_PHOTOS[4].alt}
               fill
-              className="object-cover"
-              sizes="33vw"
+              className="object-cover object-center"
+              sizes="(max-width: 1280px) 100vw, 80rem"
             />
-          </div>
-          <div className="image-reveal relative col-span-2 overflow-hidden rounded-2xl border border-line">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[4].id, 600)}
-              alt={STOCK_PHOTOS[4].alt}
-              fill
-              className="object-cover"
-              sizes="33vw"
-            />
-          </div>
-          <div className="image-reveal relative col-span-2 overflow-hidden rounded-2xl border border-line">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[12].id, 600)}
-              alt={STOCK_PHOTOS[12].alt}
-              fill
-              className="object-cover"
-              sizes="33vw"
-            />
-          </div>
-          <div className="image-reveal relative col-span-3 overflow-hidden rounded-2xl border border-line md:col-span-2">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[8].id, 800)}
-              alt={STOCK_PHOTOS[8].alt}
-              fill
-              className="object-cover"
-              sizes="40vw"
-            />
-          </div>
-          <div className="image-reveal relative col-span-3 overflow-hidden rounded-2xl border border-line md:col-span-2">
-            <Image
-              src={unsplashUrl(STOCK_PHOTOS[13].id, 800)}
-              alt={STOCK_PHOTOS[13].alt}
-              fill
-              className="object-cover"
-              sizes="40vw"
-            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-strong/25 via-transparent to-transparent" />
           </div>
         </div>
       </section>
@@ -392,8 +348,8 @@ export default function Home() {
           </p>
         </article>
         <div className="grid gap-3 sm:grid-cols-2">
-          {steps.map((step) => {
-            const shot = STOCK_PHOTOS[step.photoIndex % STOCK_PHOTOS.length];
+          {steps.map((step, idx) => {
+            const shot = LOCAL_PHOTOS[(idx + 1) % LOCAL_PHOTOS.length];
             return (
               <div
                 key={step.number}
@@ -401,7 +357,7 @@ export default function Home() {
               >
                 <div className="relative aspect-[16/11] w-full">
                   <Image
-                    src={unsplashUrl(shot.id, 800)}
+                    src={shot.src}
                     alt={`${step.title}: ${shot.alt}`}
                     fill
                     className="object-cover"
@@ -429,8 +385,8 @@ export default function Home() {
       <section className="section-shell relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={unsplashUrl(STOCK_PHOTOS[2].id, 1600)}
-            alt={STOCK_PHOTOS[2].alt}
+            src={LOCAL_PHOTOS[2].src}
+            alt={LOCAL_PHOTOS[2].alt}
             fill
             className="object-cover"
             sizes="100vw"
@@ -465,8 +421,8 @@ export default function Home() {
       >
         <div className="image-reveal relative min-h-[260px] lg:min-h-full">
           <Image
-            src={unsplashUrl(STOCK_PHOTOS[5].id, 1000)}
-            alt={STOCK_PHOTOS[5].alt}
+            src={LOCAL_PHOTOS[1].src}
+            alt={LOCAL_PHOTOS[1].alt}
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
