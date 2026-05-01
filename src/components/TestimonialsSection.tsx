@@ -6,7 +6,7 @@ const testimonials = [
   {
     quote:
       "They explained what was wrong in plain English and fixed it the same day. No pressure, just solid work.",
-    name: "Rebecca Green",
+    name: "Becky Green",
     avatar: "photo-1438761681033-6461ffad8d80",
   },
   {
